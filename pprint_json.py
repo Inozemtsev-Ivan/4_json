@@ -13,8 +13,8 @@ def load_data(filepath):
         print('File does not exist!')
 
 
-def pretty_print_json(data):
-    print(json.dumps(data, ensure_ascii=False, indent=4))
+def pretty_print_json(parsed_dictionary):
+    print(json.dumps(parsed_dictionary, ensure_ascii=False, indent=4))
 
 
 if __name__ == '__main__':
