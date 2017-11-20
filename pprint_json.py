@@ -18,6 +18,10 @@ def pretty_print_json(data):
 
 
 if __name__ == '__main__':
-    loaded_data = load_data(sys.argv[1])
+    try:
+        filepath = sys.argv[1]
+    except IndexError:
+        sys.exit('Please specify filepath!')
+    loaded_data = load_data(filepath)
     if loaded_data:
         pretty_print_json(loaded_data)
