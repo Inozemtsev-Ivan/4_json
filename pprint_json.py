@@ -4,17 +4,16 @@ import json
 
 
 def load_data(filepath):
-    try:
-        full_path = os.path.join(os.path.curdir, filepath)
-        with open(full_path, 'r') as json_file:
+    if os.path.exists(filepath):
+        with open(filepath, 'r') as json_file:
             json_data = json_file.read()
             return json.loads(json_data, encoding='UTF-8')
-    except FileExistsError:
-        print('File does not exist!')
+    else:
+        raise FileExistsError
 
 
-def pretty_print_json(parsed_dictionary):
-    print(json.dumps(parsed_dictionary, ensure_ascii=False, indent=4))
+def pretty_print_json(loaded_data):
+    print(json.dumps(loaded_data, ensure_ascii=False, indent=4))
 
 
 if __name__ == '__main__':
@@ -22,6 +21,8 @@ if __name__ == '__main__':
         filepath = sys.argv[1]
     except IndexError:
         sys.exit('Please specify filepath!')
-    loaded_data = load_data(filepath)
-    if loaded_data:
+    try:
+        loaded_data = load_data(filepath)
         pretty_print_json(loaded_data)
+    except FileExistsError:
+        sys.exit('File does not exist!')
