@@ -9,7 +9,7 @@ def load_data(filepath):
             json_data = json_file.read()
             return json.loads(json_data, encoding='UTF-8')
     else:
-        raise FileExistsError
+        raise FileNotFoundError
 
 
 def pretty_print_json(loaded_data):
@@ -24,5 +24,5 @@ if __name__ == '__main__':
     try:
         loaded_data = load_data(filepath)
         pretty_print_json(loaded_data)
-    except FileExistsError:
+    except FileNotFoundError:
         sys.exit('File does not exist!')
