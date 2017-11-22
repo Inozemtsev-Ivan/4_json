@@ -4,12 +4,9 @@ import json
 
 
 def load_data(filepath):
-    if os.path.exists(filepath):
-        with open(filepath, 'r') as json_file:
-            json_data = json_file.read()
-            return json.loads(json_data, encoding='UTF-8')
-    else:
-        raise FileNotFoundError
+    with open(filepath, 'r') as json_file:
+        json_data = json_file.read()
+        return json.loads(json_data, encoding='UTF-8')
 
 
 def pretty_print_json(loaded_data):
